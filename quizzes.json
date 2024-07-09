@@ -1,0 +1,62 @@
+{
+    "general": {
+        "name": "General Knowledge",
+        "questions": [
+            {
+                "question": "What is the capital of France?",
+                "options": ["London", "Berlin", "Paris", "Madrid"],
+                "correct": 2
+            },
+            {
+                "question": "Which planet is known as the Red Planet?",
+                "options": ["Mars", "Jupiter", "Venus", "Saturn"],
+                "correct": 0
+            },
+            {
+                "question": "What is the largest mammal in the world?",
+                "options": ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+                "correct": 1
+            }
+        ]
+    },
+    "science": {
+        "name": "Science Quiz",
+        "questions": [
+            {
+                "question": "What is the chemical symbol for gold?",
+                "options": ["Au", "Ag", "Fe", "Cu"],
+                "correct": 0
+            },
+            {
+                "question": "Which of these is not a state of matter?",
+                "options": ["Solid", "Liquid", "Gas", "Energy"],
+                "correct": 3
+            },
+            {
+                "question": "What is the closest planet to the Sun?",
+                "options": ["Venus", "Mars", "Mercury", "Earth"],
+                "correct": 2
+            }
+        ]
+    },
+    "history": {
+        "name": "History Quiz",
+        "questions": [
+            {
+                "question": "In which year did World War II end?",
+                "options": ["1943", "1945", "1947", "1950"],
+                "correct": 1
+            },
+            {
+                "question": "Who was the first President of the United States?",
+                "options": ["Thomas Jefferson", "John Adams", "George Washington", "Benjamin Franklin"],
+                "correct": 2
+            },
+            {
+                "question": "Which ancient wonder was located in Alexandria?",
+                "options": ["Hanging Gardens", "Colossus", "Lighthouse", "Temple of Artemis"],
+                "correct": 2
+            }
+        ]
+    }
+}
