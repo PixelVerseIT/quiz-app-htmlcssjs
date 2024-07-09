@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App</title>
+    <title>Quiz App App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,16 +47,53 @@
         button:hover {
             background-color: #45a049;
         }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
         #result {
             text-align: center;
             font-weight: bold;
             margin-top: 20px;
+        }
+        #timer {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 1s linear;
+        }
+        #quiz-header {
+            margin-bottom: 20px;
+        }
+        #score-display {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="quiz-container">
         <h1>Quiz App</h1>
+        <div id="quiz-header">
+            <div id="timer">Time left: 10s</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div id="score-display">Score: 0</div>
+        </div>
         <div id="quiz">
             <div class="question" id="question"></div>
             <div class="options" id="options"></div>
@@ -80,19 +117,35 @@
                 question: "What is the largest mammal in the world?",
                 options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
                 correct: 1
+            },
+            {
+                question: "Where is Hack Club HQ located?",
+                options: ["Australia", "USA", "Canada", "UK"],
+                correct: 1
             }
         ];
 
         let currentQuestion = 0;
         let score = 0;
+        let timer;
+        let timeLeft = 10;
 
+        const quizHeaderEl = document.getElementById("quiz-header");
         const questionEl = document.getElementById("question");
         const optionsEl = document.getElementById("options");
         const resultEl = document.getElementById("result");
+        const timerEl = document.getElementById("timer");
+        const progressEl = document.getElementById("progress");
+        const scoreDisplayEl = document.getElementById("score-display");
 
         function loadQuestion() {
+            if (currentQuestion >= quizData.length) {
+                showFinalResult();
+                return;
+            }
+
             const question = quizData[currentQuestion];
-            questionEl.textContent = question.question;
+            questionEl.textContent = `Question ${currentQuestion + 1}: ${question.question}`;
 
             optionsEl.innerHTML = "";
             question.options.forEach((option, index) => {
@@ -101,32 +154,75 @@
                 button.onclick = () => selectAnswer(index);
                 optionsEl.appendChild(button);
             });
+
+            resultEl.textContent = "";
+            timeLeft = 10;
+            updateTimer();
+            startTimer();
         }
 
         function selectAnswer(selectedIndex) {
+            clearInterval(timer);
+            disableButtons();
             const question = quizData[currentQuestion];
             if (selectedIndex === question.correct) {
                 score++;
                 resultEl.textContent = "Correct!";
                 resultEl.style.color = "green";
+                setTimeout(() => {
+                    currentQuestion++;
+                    loadQuestion();
+                }, 1000);
             } else {
                 resultEl.textContent = "Incorrect. The correct answer is: " + question.options[question.correct];
                 resultEl.style.color = "red";
+                setTimeout(() => {
+                    currentQuestion++;
+                    loadQuestion();
+                }, 2000);
             }
+            updateScoreDisplay();
+        }
 
-            currentQuestion++;
-            if (currentQuestion < quizData.length) {
-                setTimeout(loadQuestion, 1500);
-            } else {
-                setTimeout(showFinalResult, 1500);
-            }
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    disableButtons();
+                    resultEl.textContent = "Time's up!";
+                    resultEl.style.color = "red";
+                    setTimeout(() => {
+                        currentQuestion++;
+                        loadQuestion();
+                    }, 2000);
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            timerEl.textContent = `Time left: ${timeLeft}s`;
+            progressEl.style.width = `${(timeLeft / 10) * 100}%`;
         }
 
         function showFinalResult() {
+            quizHeaderEl.style.display = "none";
             questionEl.textContent = "Quiz Completed!";
             optionsEl.innerHTML = "";
             resultEl.textContent = `Your final score: ${score} out of ${quizData.length}`;
             resultEl.style.color = "blue";
+        }
+
+        function disableButtons() {
+            const buttons = optionsEl.getElementsByTagName("button");
+            for (let button of buttons) {
+                button.disabled = true;
+            }
+        }
+
+        function updateScoreDisplay() {
+            scoreDisplayEl.textContent = `Score: ${score}`;
         }
 
         loadQuestion();
