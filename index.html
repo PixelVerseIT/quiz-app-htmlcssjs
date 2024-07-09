@@ -9,7 +9,11 @@
 <body>
     <div class="quiz-container">
         <h1>Quiz App</h1>
-        <div id="quiz-selection">
+        <div id="main-menu">
+            <button id="start-quiz-btn">Start New Quiz</button>
+            <button id="view-stats-btn">View Stats</button>
+        </div>
+        <div id="quiz-selection" style="display: none;">
             <h2>Select a Quiz:</h2>
             <select id="quiz-type">
                 <!-- Options will be populated by JavaScript -->
@@ -29,6 +33,16 @@
                 <div class="options" id="options"></div>
             </div>
             <div id="result"></div>
+        </div>
+        <div id="stats-area" style="display: none;">
+            <h2>Your Quiz Stats</h2>
+            <div id="overall-stats"></div>
+            <h3>High Scores</h3>
+            <div id="high-scores"></div>
+            <h3>Recent Quizzes</h3>
+            <div id="recent-quizzes"></div>
+            <button id="clear-stats">Clear All Stats</button>
+            <button id="back-to-menu">Back to Menu</button>
         </div>
     </div>
     <script src="quiz.js"></script>

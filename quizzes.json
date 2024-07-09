@@ -16,6 +16,16 @@
                 "question": "What is the largest mammal in the world?",
                 "options": ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
                 "correct": 1
+            },
+            {
+                "question": "Which ocean is the largest?",
+                "options": ["Atlantic", "Indian", "Arctic", "Pacific"],
+                "correct": 3
+            },
+            {
+                "question": "Who wrote 'Romeo and Juliet'?",
+                "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+                "correct": 1
             }
         ]
     },
@@ -36,6 +46,16 @@
                 "question": "What is the closest planet to the Sun?",
                 "options": ["Venus", "Mars", "Mercury", "Earth"],
                 "correct": 2
+            },
+            {
+                "question": "What is the hardest natural substance on Earth?",
+                "options": ["Gold", "Iron", "Diamond", "Platinum"],
+                "correct": 2
+            },
+            {
+                "question": "What is the powerhouse of the cell?",
+                "options": ["Nucleus", "Ribosome", "Mitochondria", "Chloroplast"],
+                "correct": 2
             }
         ]
     },
@@ -55,6 +75,16 @@
             {
                 "question": "Which ancient wonder was located in Alexandria?",
                 "options": ["Hanging Gardens", "Colossus", "Lighthouse", "Temple of Artemis"],
+                "correct": 2
+            },
+            {
+                "question": "Who discovered America?",
+                "options": ["Christopher Columbus", "Vasco da Gama", "James Cook", "Ferdinand Magellan"],
+                "correct": 0
+            },
+            {
+                "question": "Which empire was ruled by Genghis Khan?",
+                "options": ["Roman Empire", "Ottoman Empire", "Mongol Empire", "British Empire"],
                 "correct": 2
             }
         ]
